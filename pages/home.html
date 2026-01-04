@@ -1,1 +1,175 @@
+<!-- HOME PAGE : Thai + English -->
+
+<style>
+  /* ---- HOME BASE ---- */
+  .home {
+    padding: 16px;
+  }
+
+  /* ---- HEADER ---- */
+  .home-header {
+    background: linear-gradient(135deg, #0b4fa1, #0a3f82);
+    color: #fff;
+    padding: 18px 16px 22px;
+    border-radius: 0 0 18px 18px;
+    margin: -16px -16px 18px;
+  }
+
+  .home-header .title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .home-header .subtitle {
+    font-size: 13px;
+    opacity: 0.95;
+    margin-top: 6px;
+  }
+
+  /* ---- DATE SELECTOR ---- */
+  .date-box {
+    background: #ffffff;
+    margin-top: 14px;
+    border-radius: 10px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #0b4fa1;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  /* ---- RESULT CARD ---- */
+  .result-card {
+    position: relative;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 18px 16px;
+    margin-top: 18px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+
+  /* watermark logo */
+  .result-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("../assets/logo.png") no-repeat center;
+    background-size: 70%;
+    opacity: 0.65; /* 60–70% as requested */
+    pointer-events: none;
+  }
+
+  .result-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .result-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0b4fa1;
+    margin-bottom: 8px;
+  }
+
+  .main-number {
+    font-size: 32px;
+    font-weight: 800;
+    color: #0b4fa1;
+    text-align: center;
+    letter-spacing: 2px;
+    margin: 10px 0 14px;
+  }
+
+  .sub-results {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+  }
+
+  .sub-box {
+    flex: 1;
+    background: #f4f7ff;
+    border-radius: 10px;
+    padding: 10px 6px;
+    text-align: center;
+  }
+
+  .sub-box .label {
+    font-size: 11px;
+    color: #555;
+    margin-bottom: 4px;
+  }
+
+  .sub-box .value {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0b4fa1;
+  }
+
+  /* ---- PRIZE TEXT ---- */
+  .prize-text {
+    margin-top: 14px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #c99700;
+    text-align: center;
+  }
+</style>
+
+<div class="home">
+
+  <!-- HEADER -->
+  <div class="home-header">
+    <div class="title">
+      Government Lottery Office  
+      <br>สำนักงานสลากกินแบ่งรัฐบาล
+    </div>
+    <div class="subtitle">
+      Thailand Lottery 3UP Game • ผลสลากกินแบ่งรัฐบาล
+    </div>
+
+    <!-- DATE -->
+    <div class="date-box">
+      <span>📅 Draw Date</span>
+      <span>01 Jan 2026</span>
+    </div>
+  </div>
+
+  <!-- RESULT CARD -->
+  <div class="result-card">
+    <div class="result-content">
+      <div class="result-title">
+        First Prize Result • รางวัลที่ 1
+      </div>
+
+      <div class="main-number">
+        461252
+      </div>
+
+      <div class="sub-results">
+        <div class="sub-box">
+          <div class="label">Front 3</div>
+          <div class="value">389</div>
+        </div>
+        <div class="sub-box">
+          <div class="label">Back 3</div>
+          <div class="value">137</div>
+        </div>
+        <div class="sub-box">
+          <div class="label">Last 2</div>
+          <div class="value">22</div>
+        </div>
+      </div>
+
+      <div class="prize-text">
+        Prize Amount • 6,000,000 Riyals
+      </div>
+    </div>
+  </div>
+
+</div>
 
