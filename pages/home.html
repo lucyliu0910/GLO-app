@@ -1,175 +1,250 @@
-<!-- HOME PAGE : Thai + English -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>my GLO</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-  /* ---- HOME BASE ---- */
-  .home {
-    padding: 16px;
-  }
+:root{
+  --blue1:#0b5fd7;
+  --blue2:#0a4bb8;
+  --light:#f5f7fb;
+}
 
-  /* ---- HEADER ---- */
-  .home-header {
-    background: linear-gradient(135deg, #0b4fa1, #0a3f82);
-    color: #fff;
-    padding: 18px 16px 22px;
-    border-radius: 0 0 18px 18px;
-    margin: -16px -16px 18px;
-  }
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont;
+  background:var(--light);
+}
 
-  .home-header .title {
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 1.3;
-  }
+/* ===== HEADER ===== */
+.header{
+  background:linear-gradient(180deg,var(--blue1),var(--blue2));
+  color:#fff;
+  padding:18px 16px 40px;
+  border-bottom-left-radius:28px;
+  border-bottom-right-radius:28px;
+  position:relative;
+}
 
-  .home-header .subtitle {
-    font-size: 13px;
-    opacity: 0.95;
-    margin-top: 6px;
-  }
+.header-top{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
 
-  /* ---- DATE SELECTOR ---- */
-  .date-box {
-    background: #ffffff;
-    margin-top: 14px;
-    border-radius: 10px;
-    padding: 10px 12px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: #0b4fa1;
-    font-weight: 600;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  }
+.header-top img{
+  width:38px;
+}
 
-  /* ---- RESULT CARD ---- */
-  .result-card {
-    position: relative;
-    background: #ffffff;
-    border-radius: 14px;
-    padding: 18px 16px;
-    margin-top: 18px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-    overflow: hidden;
-  }
+.header-title{
+  font-size:18px;
+  font-weight:700;
+}
 
-  /* watermark logo */
-  .result-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: url("../assets/logo.png") no-repeat center;
-    background-size: 70%;
-    opacity: 0.65; /* 60–70% as requested */
-    pointer-events: none;
-  }
+.header-sub{
+  font-size:12px;
+  opacity:.9;
+}
 
-  .result-content {
-    position: relative;
-    z-index: 2;
-  }
+/* ===== DATE PILL ===== */
+.date-pill{
+  background:#fff;
+  margin: -22px 16px 14px;
+  padding:10px 14px;
+  border-radius:18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 6px 18px rgba(0,0,0,.12);
+  font-size:14px;
+}
 
-  .result-title {
-    font-size: 15px;
-    font-weight: 700;
-    color: #0b4fa1;
-    margin-bottom: 8px;
-  }
+/* ===== CARD COMMON ===== */
+.card{
+  background:#fff;
+  margin:12px 16px;
+  border-radius:22px;
+  padding:18px;
+  position:relative;
+  box-shadow:0 8px 22px rgba(0,0,0,.12);
+}
 
-  .main-number {
-    font-size: 32px;
-    font-weight: 800;
-    color: #0b4fa1;
-    text-align: center;
-    letter-spacing: 2px;
-    margin: 10px 0 14px;
-  }
+/* watermark */
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:url("LOGO.png") center/65% no-repeat;
+  opacity:.15;
+  pointer-events:none;
+}
 
-  .sub-results {
-    display: flex;
-    gap: 10px;
-    justify-content: space-between;
-  }
+/* ===== FIRST PRIZE ===== */
+.prize-title{
+  text-align:center;
+  font-size:16px;
+  font-weight:700;
+  color:#1b4db1;
+}
 
-  .sub-box {
-    flex: 1;
-    background: #f4f7ff;
-    border-radius: 10px;
-    padding: 10px 6px;
-    text-align: center;
-  }
+.prize-amount{
+  text-align:center;
+  font-size:13px;
+  color:#666;
+  margin-top:4px;
+}
 
-  .sub-box .label {
-    font-size: 11px;
-    color: #555;
-    margin-bottom: 4px;
-  }
+.main-number{
+  text-align:center;
+  font-size:40px;
+  font-weight:800;
+  margin:14px 0;
+  color:#1b2b45;
+}
 
-  .sub-box .value {
-    font-size: 16px;
-    font-weight: 700;
-    color: #0b4fa1;
-  }
+.number-row{
+  display:flex;
+  gap:10px;
+}
 
-  /* ---- PRIZE TEXT ---- */
-  .prize-text {
-    margin-top: 14px;
-    font-size: 14px;
-    font-weight: 700;
-    color: #c99700;
-    text-align: center;
-  }
+.number-box{
+  flex:1;
+  background:#f1f5ff;
+  border-radius:14px;
+  padding:10px;
+  text-align:center;
+}
+
+.number-box small{
+  display:block;
+  font-size:12px;
+  color:#555;
+}
+
+.number-box b{
+  font-size:18px;
+  color:#1b4db1;
+}
+
+/* ===== SECOND CARD ===== */
+.blue-card{
+  border:2px solid #1b6fff;
+}
+
+.blue-title{
+  text-align:center;
+  font-weight:700;
+  color:#1b6fff;
+}
+
+.blue-main{
+  font-size:34px;
+  font-weight:800;
+  text-align:center;
+  margin:10px 0;
+}
+
+/* ===== BOTTOM NAV ===== */
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:64px;
+  background:#fff;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  box-shadow:0 -4px 18px rgba(0,0,0,.15);
+}
+
+.bottom-nav a{
+  text-decoration:none;
+  color:#888;
+  font-size:12px;
+  text-align:center;
+}
+
+.bottom-nav a.active{
+  color:#1b6fff;
+  font-weight:700;
+}
+
+.spacer{height:80px;}
 </style>
+</head>
 
-<div class="home">
+<body>
 
-  <!-- HEADER -->
-  <div class="home-header">
-    <div class="title">
-      Government Lottery Office  
-      <br>สำนักงานสลากกินแบ่งรัฐบาล
-    </div>
-    <div class="subtitle">
-      Thailand Lottery 3UP Game • ผลสลากกินแบ่งรัฐบาล
-    </div>
-
-    <!-- DATE -->
-    <div class="date-box">
-      <span>📅 Draw Date</span>
-      <span>01 Jan 2026</span>
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <img src="LOGO.png">
+    <div>
+      <div class="header-title">my GLO</div>
+      <div class="header-sub">สำนักงานสลากกินแบ่งรัฐบาล</div>
     </div>
   </div>
-
-  <!-- RESULT CARD -->
-  <div class="result-card">
-    <div class="result-content">
-      <div class="result-title">
-        First Prize Result • รางวัลที่ 1
-      </div>
-
-      <div class="main-number">
-        461252
-      </div>
-
-      <div class="sub-results">
-        <div class="sub-box">
-          <div class="label">Front 3</div>
-          <div class="value">389</div>
-        </div>
-        <div class="sub-box">
-          <div class="label">Back 3</div>
-          <div class="value">137</div>
-        </div>
-        <div class="sub-box">
-          <div class="label">Last 2</div>
-          <div class="value">22</div>
-        </div>
-      </div>
-
-      <div class="prize-text">
-        Prize Amount • 6,000,000 Riyals
-      </div>
-    </div>
-  </div>
-
 </div>
 
+<!-- DATE -->
+<div class="date-pill">
+  <span>📅 1 ธันวาคม 2568</span>
+  <span>01 Jan 2026</span>
+</div>
+
+<!-- FIRST PRIZE -->
+<div class="card">
+  <div class="prize-title">สลากกินแบ่งรัฐบาล • รางวัลที่ 1</div>
+  <div class="prize-amount">รางวัล : 6,000,000 Riyals</div>
+
+  <div class="main-number">461252</div>
+
+  <div class="number-row">
+    <div class="number-box">
+      <small>เลขหน้า 3 ตัว</small>
+      <b>389</b>
+    </div>
+    <div class="number-box">
+      <small>เลขท้าย 3 ตัว</small>
+      <b>137</b>
+    </div>
+    <div class="number-box">
+      <small>เลขท้าย 2 ตัว</small>
+      <b>22</b>
+    </div>
+  </div>
+</div>
+
+<!-- SECOND RESULT -->
+<div class="card blue-card">
+  <div class="blue-title">สลากตัวเลขสามหลัก <span style="color:red">NEW</span></div>
+  <div class="blue-main">252</div>
+
+  <div class="number-row">
+    <div class="number-box">
+      <small>สามสลับหลัก</small>
+      <b>225 • 522</b>
+    </div>
+    <div class="number-box">
+      <small>สองตรง</small>
+      <b>22</b>
+    </div>
+  </div>
+</div>
+
+<div class="spacer"></div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <a class="active">🏠<br>Home</a>
+  <a>🛒<br>Buy</a>
+  <a>🎫<br>Ticket</a>
+  <a>👤<br>Account</a>
+  <a>📞<br>Contact</a>
+</div>
+
+</body>
+</html>
