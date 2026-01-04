@@ -1,1 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GLO App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+  <!-- App Meta -->
+  <meta name="theme-color" content="#0b4fa1" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <!-- Base Styles -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* ---- BASIC RESET ---- */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #f4f6fb;
+      color: #222;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ---- SPLASH SCREEN ---- */
+    #splash {
+      position: fixed;
+      inset: 0;
+      background: #0b4fa1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    #splash img {
+      width: 200px;
+      max-width: 70%;
+    }
+
+    /* ---- LOADER ---- */
+    #loader {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9998;
+      pointer-events: none;
+    }
+    #loader .loader-box {
+      background: rgba(255,255,255,0.9);
+      padding: 18px;
+      border-radius: 50%;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    #loader video {
+      width: 60px;
+      height: 60px;
+    }
+
+    /* ---- APP CONTAINER ---- */
+    #app {
+      display: none;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ---- PAGE AREA ---- */
+    #page {
+      flex: 1;
+      overflow-y: auto;
+      padding-bottom: 70px; /* space for bottom nav */
+    }
+
+    /* ---- BOTTOM NAV ---- */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: #ffffff;
+      border-top: 1px solid #ddd;
+      display: flex;
+      z-index: 1000;
+    }
+    .nav-item {
+      flex: 1;
+      text-align: center;
+      font-size: 12px;
+      color: #777;
+      padding-top: 6px;
+      cursor: pointer;
+    }
+    .nav-item.active {
+      color: #0b4fa1;
+      font-weight: 600;
+    }
+    .nav-item span {
+      display: block;
+      font-size: 20px;
+      margin-bottom: 2px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- SPLASH -->
+<div id="splash">
+  <img src="assets/splash.png" alt="Splash">
+</div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-box">
+    <video src="assets/loader.webm" autoplay loop muted playsinline></video>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+
+  <!-- PAGE CONTENT -->
+  <div id="page">
+    <!-- dynamic pages load here -->
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div class="bottom-nav">
+    <div class="nav-item active" data-page="home">
+      <span>🏠</span>Home
+    </div>
+    <div class="nav-item" data-page="buy">
+      <span>🛒</span>Buy
+    </div>
+    <div class="nav-item" data-page="open-ticket">
+      <span>🔓</span>Ticket
+    </div>
+    <div class="nav-item" data-page="account">
+      <span>👤</span>Account
+    </div>
+    <div class="nav-item" data-page="contact">
+      <span>📞</span>Contact
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const splash = document.getElementById('splash');
+  const loader = document.getElementById('loader');
+  const app = document.getElementById('app');
+  const page = document.getElementById('page');
+  const navItems = document.querySelectorAll('.nav-item');
+
+  function showLoader() {
+    loader.style.display = 'flex';
+  }
+  function hideLoader() {
+    loader.style.display = 'none';
+  }
+
+  function setActiveNav(name) {
+    navItems.forEach(n => {
+      n.classList.toggle('active', n.dataset.page === name);
+    });
+  }
+
+  function loadPage(name) {
+    showLoader();
+    setActiveNav(name);
+
+    fetch(`pages/${name}.html`)
+      .then(res => res.text())
+      .then(html => {
+        setTimeout(() => {
+          page.innerHTML = html;
+          hideLoader();
+        }, 600); // small delay for smooth UX
+      })
+      .catch(() => {
+        page.innerHTML = "<p style='padding:20px'>Page not found</p>";
+        hideLoader();
+      });
+  }
+
+  // NAV CLICK
+  navItems.forEach(item => {
+    item.addEventListener('click', () => {
+      loadPage(item.dataset.page);
+    });
+  });
+
+  // INITIAL LOAD
+  setTimeout(() => {
+    splash.style.display = 'none';
+    app.style.display = 'flex';
+    showLoader();
+    loadPage('home');
+  }, 1800); // splash duration
+</script>
+
+</body>
+</html>
 
